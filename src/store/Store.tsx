@@ -54,7 +54,7 @@ const StoreContext = createContext({} as StoreApi);
 const StoreProvider: React.FC = props => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    return <StoreContext.Provider value={{ state, dispatch: dispatch }}>{props.children}</StoreContext.Provider>;
+    return <StoreContext.Provider value={{ state, dispatch }}>{props.children}</StoreContext.Provider>;
 };
 
 export { StoreContext, StoreProvider };
