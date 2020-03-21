@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
-import { testAction, StoreContext } from "../store/Store";
+import { StoreContext } from "../store";
+import { getGames, testAction } from "../store/actions";
 
 const GlobalStyle = createGlobalStyle`
     * {
@@ -28,14 +29,20 @@ const App: React.FC = () => {
 
     useEffect(() => {
         dispatch(testAction());
+        dispatch(getGames());
     }, [dispatch]);
+
+    const renderGames = () => {
+        return state.games.map((game: any, id: number) => <li key={id}>{game.name}</li>);
+    };
 
     return (
         <React.Fragment>
             <GlobalStyle />
             <Switch>
                 <Route path="/" exact>
-                    Home {console.log(state.test)}
+                    {console.log(state)}
+                    {state.loading ? "Loading..." : <ul>{renderGames()}</ul>}
                 </Route>
                 <Route path="/contact">Contact</Route>
                 <Route path="/favourites">Favourites</Route>
