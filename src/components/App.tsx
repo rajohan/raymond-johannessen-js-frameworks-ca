@@ -45,7 +45,7 @@ const App: React.FC = () => {
                     {state.loading ? "Loading..." : <ul>{renderGames()}</ul>}
                 </Route>
                 <Route path="/contact">Contact</Route>
-                <Route path="/favourites">Favourites</Route>
+                <Route path="/favorites">Favorites</Route>
                 <Route path="/game/:id">Game</Route>
             </Switch>
         </React.Fragment>
