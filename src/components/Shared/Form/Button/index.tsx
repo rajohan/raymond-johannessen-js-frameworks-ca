@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 type Props = {
     link?: string;
@@ -9,19 +10,53 @@ type Props = {
     onClick?: () => void;
 };
 
+const StyledLink = styled.a`
+    display: inline-block;
+    background-color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.text};
+    text-decoration: none;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 3px;
+    margin: 10px 0;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    font-size: 14px;
+
+    &:hover {
+        background-color: ${props => props.theme.colors.secondaryLight};
+        transition: background-color 0.3s;
+    }
+
+    &:active {
+        margin-top: 13px;
+        margin-bottom: 7px;
+        transition: margin 0.1s;
+    }
+`;
+
 const Button: React.FC<Props> = props => {
     const { link = "", type = "link", children, target, rel, onClick } = props;
 
     if (type === "a") {
         return (
-            <a href={link} target={target} rel={rel}>
+            <StyledLink href={link} target={target} rel={rel}>
                 {children}
-            </a>
+            </StyledLink>
         );
     } else if (type === "button") {
-        return <button onClick={onClick}>{children}</button>;
+        return (
+            <StyledLink as="button" onClick={onClick}>
+                {children}
+            </StyledLink>
+        );
     } else {
-        return <Link to={link}>{children}</Link>;
+        return (
+            <StyledLink as={Link} to={link}>
+                {children}
+            </StyledLink>
+        );
     }
 };
 

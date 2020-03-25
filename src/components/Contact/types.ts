@@ -5,7 +5,7 @@ export type FieldError = {
 
 export type Inputs = {
     name: "firstName" | "lastName" | "email" | "message";
-    placeholder: string;
-    label: string;
+    placeholder?: string;
+    label?: string;
     type?: string;
 };

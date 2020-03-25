@@ -5,6 +5,7 @@ import Input from "../Shared/Form/Input";
 import InputError from "../Shared/Form/Input/InputError";
 import Form from "../Shared/Form";
 import Button from "../Shared/Form/Button";
+import Success from "../Shared/Form/Success";
 import { initialStateTouched, initialStateValues } from "./initialStates";
 import { Inputs, FieldError } from "./types";
 import { schema } from "./validationSchema";
@@ -84,14 +85,18 @@ const Contact: React.FC = () => {
     };
 
     return (
-        <Form onSubmit={handleSubmit}>
-            {messageSent && <div>Message has been successfully sent.</div>}
-            {renderInputs({ name: "firstName", placeholder: "First name", label: "First name" })}
-            {renderInputs({ name: "lastName", placeholder: "Last name", label: "Last name" })}
-            {renderInputs({ name: "email", placeholder: "Email", label: "Email", type: "email" })}
-            {renderInputs({ name: "message", placeholder: "Message", label: "Message", type: "textarea" })}
-            <Button type="button">Send message</Button>
-        </Form>
+        <React.Fragment>
+            <h1>Contact Us</h1>
+            <h2>Get an answer within 24 hours</h2>
+            <Form onSubmit={handleSubmit}>
+                {messageSent && <Success>Your message has been successfully sent.</Success>}
+                {renderInputs({ name: "firstName", placeholder: "First name" })}
+                {renderInputs({ name: "lastName", placeholder: "Last name" })}
+                {renderInputs({ name: "email", placeholder: "Email", type: "email" })}
+                {renderInputs({ name: "message", placeholder: "Message", type: "textarea" })}
+                <Button type="button">Send Message</Button>
+            </Form>
+        </React.Fragment>
     );
 };
 

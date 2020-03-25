@@ -5,12 +5,14 @@ import styled from "styled-components";
 const StyledSearch = styled.div`
     display: flex;
     flex-direction: column;
+    width: 100%;
+    max-width: 500px;
 `;
 
 const Search: React.FC = () => {
     return (
         <StyledSearch>
-            <Input placeholder="Search..." label="Search" />
+            <Input id="search" placeholder="Search..." />
         </StyledSearch>
     );
 };

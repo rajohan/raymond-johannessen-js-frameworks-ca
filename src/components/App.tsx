@@ -15,12 +15,14 @@ import Favorites from "./Favorites";
 const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
+        font-family: ${props => props.theme.font.main};
     }
     
      body {
         background-color: ${props => props.theme.colors.primary};
         padding: 0;
         margin: 0;
+        font-size: ${props => props.theme.font.size};
     }
     
     #root {
@@ -31,6 +33,17 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         align-items: center;
     }
+    
+    h1 {
+        font-size: 20px;
+        margin: 10px;
+    }
+    
+    h2 {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 5px;
+    }
 `;
 
 const Container = styled.main`
@@ -38,7 +51,8 @@ const Container = styled.main`
     flex-direction: column;
     align-items: center;
     flex: 1;
-    margin: 20px;
+    padding: 20px;
+    width: 100%;
 `;
 
 const App: React.FC = () => {

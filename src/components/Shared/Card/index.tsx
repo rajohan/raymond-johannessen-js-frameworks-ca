@@ -14,7 +14,7 @@ const Card: React.FC<Props> = ({ game }) => {
             <div>{game.background_image}</div>
             <div>{game.rating}</div>
             <div>{game.released}</div>
-            <Button link={`game/${game.id}`}>See more</Button>
+            <Button link={`game/${game.id}`}>See More</Button>
         </div>
     );
 };

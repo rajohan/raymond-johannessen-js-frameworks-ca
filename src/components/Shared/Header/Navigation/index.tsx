@@ -20,7 +20,8 @@ const StyledNavigation = styled.nav`
         }
 
         &.active {
-            color: ${props => props.theme.colors.linkActive};
+            padding-bottom: 12px;
+            border-bottom: 3px solid ${props => props.theme.colors.tertiary};
         }
     }
 `;

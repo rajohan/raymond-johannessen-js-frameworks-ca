@@ -1,5 +1,39 @@
 import React from "react";
+import styled from "styled-components";
+
 import Label from "../Label";
+
+const StyledInput = styled.div`
+    margin: 7px 0;
+    width: 100%;
+
+    input,
+    textarea {
+        background-color: ${props => props.theme.colors.tertiary};
+        border: none;
+        color: ${props => props.theme.colors.text};
+        padding: 9px 10px 7px 10px;
+        border-radius: 2px;
+        outline: none;
+        border-bottom: 3px solid ${props => props.theme.colors.tertiary};
+        width: 100%;
+
+        &:focus {
+            border-color: ${props => props.theme.colors.secondary};
+        }
+
+        &::placeholder {
+            color: ${props => props.theme.colors.primary};
+            opacity: 1;
+        }
+    }
+
+    textarea {
+        margin-bottom: -4px;
+        resize: vertical;
+        min-height: 200px;
+    }
+`;
 
 type Props = {
     id?: string;
@@ -32,14 +66,14 @@ const Input: React.FC<Props> = props => {
 
     if (label) {
         return (
-            <React.Fragment>
+            <StyledInput>
                 <Label htmlFor={id}>{label}</Label>
                 {input}
-            </React.Fragment>
+            </StyledInput>
         );
     }
 
-    return input;
+    return <StyledInput>{input}</StyledInput>;
 };
 
 export default Input;

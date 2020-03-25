@@ -45,7 +45,7 @@ const Details: React.FC = () => {
             <div>{state.game.background_image}</div>
             <div>{state.game.description_raw}</div>
             <Button type="a" link={state.game.website} target="_blank" rel="noopener noreferrer">
-                Visit the games website
+                Visit The Games Website
             </Button>
         </div>
     );
