@@ -10,9 +10,21 @@ export type StoreApi = {
     dispatch: (action: Action | Function) => void;
 };
 
+export type Game = {
+    id: number;
+    name: string;
+    background_image: string;
+    rating: string;
+    released: string;
+    genres: [{ name: string }];
+    platforms: [{ platform: { name: string } }];
+    description_raw: string;
+    website: string;
+};
+
 export type AppState = {
-    games: [];
+    game?: Game;
+    games?: Game[];
     loading: boolean;
-    test: string;
     state?: {};
 };

@@ -1,5 +1,5 @@
 export enum ActionTypes {
-    TEST1 = "TEST1",
-    TEST2 = "TEST2",
+    SET_LOADING = "SET_LOADING",
+    GET_GAME = "GET_GAME",
     GET_GAMES = "GET_GAMES"
 }
