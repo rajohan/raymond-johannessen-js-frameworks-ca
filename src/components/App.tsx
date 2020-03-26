@@ -52,6 +52,7 @@ const Container = styled.main`
     align-items: center;
     flex: 1;
     padding: 20px;
+    max-width: 1290px;
     width: 100%;
 `;
 

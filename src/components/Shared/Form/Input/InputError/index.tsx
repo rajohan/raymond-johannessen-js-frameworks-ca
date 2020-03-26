@@ -10,7 +10,7 @@ const InputErrorStyled = styled.div`
     position: relative;
     width: 100%;
 
-    &:before {
+    &::before {
         content: "";
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;

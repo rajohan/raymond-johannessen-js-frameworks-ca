@@ -33,7 +33,7 @@ export const getGames = (): ((dispatch: Function) => Promise<any>) => {
     return async (dispatch: Function) => {
         dispatch({ type: ActionTypes.SET_LOADING, payload: true });
 
-        const { data } = await axios.get(`${GAME_API_URL}?page_size=20`);
+        const { data } = await axios.get(`${GAME_API_URL}?page_size=40`);
         dispatch({ type: ActionTypes.GET_GAMES, payload: data.results });
 
         dispatch({ type: ActionTypes.SET_LOADING, payload: false });

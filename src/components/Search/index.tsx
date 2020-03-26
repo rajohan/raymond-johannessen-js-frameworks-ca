@@ -7,6 +7,7 @@ const StyledSearch = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 500px;
+    margin: 20px 0;
 `;
 
 const Search: React.FC = () => {

@@ -23,6 +23,7 @@ const StyledLink = styled.a`
     outline: none;
     text-align: center;
     font-size: 14px;
+    font-weight: 700;
 
     &:hover {
         background-color: ${props => props.theme.colors.secondaryLight};

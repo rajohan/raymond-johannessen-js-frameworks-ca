@@ -1,7 +1,18 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
+
 import { StoreContext } from "../../store";
 import Card from "../Shared/Card";
 import Search from "../Search";
+
+const StyledHome = styled.div`
+    display: grid;
+    width: 100%;
+    margin: 15px 0;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    justify-content: center;
+`;
 
 const Home: React.FC = () => {
     const { state } = useContext(StoreContext);
@@ -16,8 +27,9 @@ const Home: React.FC = () => {
         <React.Fragment>Loading...</React.Fragment>
     ) : (
         <React.Fragment>
+            <h1>Discover New Games</h1>
             <Search />
-            <div>{renderGames()}</div>
+            <StyledHome>{renderGames()}</StyledHome>
         </React.Fragment>
     );
 };
