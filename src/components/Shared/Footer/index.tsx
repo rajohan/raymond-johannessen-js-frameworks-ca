@@ -8,6 +8,7 @@ const StyledFooter = styled.footer`
     flex-direction: column;
     align-items: center;
     background-color: ${props => props.theme.colors.secondary};
+    border-top: 3px solid ${props => props.theme.colors.tertiary};
 
     small {
         padding: 5px;

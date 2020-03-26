@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
     align-items: center;
     width: 100%;
     background-color: ${props => props.theme.colors.secondary};
+    border-bottom: 3px solid ${props => props.theme.colors.tertiary};
 
     .logo {
         margin-left: 20px;

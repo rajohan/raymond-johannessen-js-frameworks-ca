@@ -15,14 +15,18 @@ const StyledNavigation = styled.nav`
         color: ${props => props.theme.colors.link};
         text-decoration: none;
 
-        &:hover {
-            background-color: ${props => props.theme.colors.tertiary};
-        }
-
+        &:hover,
         &.active {
-            padding-bottom: 12px;
-            border-bottom: 3px solid ${props => props.theme.colors.tertiary};
+            background-color: ${props => props.theme.colors.primary};
         }
+    }
+
+    li:not(:last-of-type) {
+        border-right: 1px solid ${props => props.theme.colors.tertiary};
+    }
+
+    li:first-of-type {
+        border-left: 1px solid ${props => props.theme.colors.tertiary};
     }
 `;
 
