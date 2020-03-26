@@ -8,7 +8,7 @@ export const defaultTheme: DefaultTheme = {
     colors: {
         primary: "#262626",
         secondary: "#000000",
-        secondaryLight: "#0f0f0f",
+        secondaryLight: "#141414",
         tertiary: "#555555",
         error: "#ff4437",
         success: "#21ba45",
