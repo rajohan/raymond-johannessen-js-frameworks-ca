@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components";
 
 export const defaultTheme: DefaultTheme = {
     font: {
-        main: "Georgia, sans-serif",
+        main: "Lato, sans-serif",
         size: "16px"
     },
     colors: {

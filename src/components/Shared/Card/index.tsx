@@ -54,7 +54,7 @@ const StyledCard = styled.div`
 
     img {
         width: 100%;
-        height: 150px;
+        height: 200px;
         object-fit: cover;
         object-position: top;
     }
@@ -80,7 +80,11 @@ type Props = {
 };
 
 const Card: React.FC<Props> = ({ game }) => {
-    const date = new Date(game.released).toLocaleDateString("en-GB");
+    const date = new Date(game.released).toLocaleDateString("en-GB", {
+        month: "long",
+        year: "numeric",
+        day: "numeric"
+    });
 
     return (
         <StyledCard>
