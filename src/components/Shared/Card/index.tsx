@@ -68,6 +68,7 @@ const StyledRate = styled(Rate)`
     li {
         margin-right: 2px;
         color: #000;
+        cursor: default;
     }
 
     li div {

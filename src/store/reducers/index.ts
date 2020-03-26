@@ -9,6 +9,8 @@ export const reducer = (state: AppState, action: { type: ActionTypes; payload?: 
             return { ...state, game: action.payload };
         case ActionTypes.GET_GAMES:
             return { ...state, games: action.payload };
+        case ActionTypes.SEARCH_GAMES:
+            return { ...state, games: action.payload };
         default:
             return state;
     }

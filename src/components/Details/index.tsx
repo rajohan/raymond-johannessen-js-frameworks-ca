@@ -6,6 +6,7 @@ import { getGame } from "../../store/actions";
 import { StoreContext } from "../../store";
 import Tags from "../Shared/Tags";
 import Button from "../Shared/Form/Button";
+import Loading from "../Shared/Loading";
 
 const StyledDetails = styled.div`
     display: flex;
@@ -70,7 +71,7 @@ const Details: React.FC = () => {
     }, [gameId.id, dispatch]);
 
     if (state.loading) {
-        return <React.Fragment>Loading...</React.Fragment>;
+        return <Loading />;
     }
 
     if (!state.game || !state.game.name || (gameId.id && isNaN(parseInt(gameId.id)))) {

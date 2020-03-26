@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { StoreContext } from "../../store";
 import Card from "../Shared/Card";
 import Search from "../Search";
+import Loading from "../Shared/Loading";
 
 const StyledHome = styled.div`
     display: grid;
@@ -23,13 +24,17 @@ const Home: React.FC = () => {
         }
     };
 
-    return state.loading ? (
-        <React.Fragment>Loading...</React.Fragment>
-    ) : (
+    return (
         <React.Fragment>
             <h1>Discover New Games</h1>
             <Search />
-            <StyledHome>{renderGames()}</StyledHome>
+            {!state.loading && state.games && state.games.length < 1 ? (
+                "Sorry, we could not find any games matching your search terms."
+            ) : state.loading ? (
+                <Loading />
+            ) : (
+                <StyledHome>{renderGames()}</StyledHome>
+            )}
         </React.Fragment>
     );
 };
