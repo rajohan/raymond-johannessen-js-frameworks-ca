@@ -16,6 +16,7 @@ declare module "styled-components" {
             text: string;
             link: string;
             linkHover: string;
+            like: string;
         };
     }
 }

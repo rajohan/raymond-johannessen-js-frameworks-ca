@@ -25,6 +25,7 @@ export type Game = {
 export type AppState = {
     game?: Game;
     games?: Game[];
+    favorites: Game[];
     loading: boolean;
     state?: {};
 };

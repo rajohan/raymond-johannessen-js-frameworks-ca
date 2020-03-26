@@ -6,6 +6,7 @@ import "../../../assets/rc-rate/rc-rate.css";
 import { Game } from "../../../store/types";
 import Button from "../Form/Button";
 import { Link } from "react-router-dom";
+import Like from "../Like";
 
 const StyledCard = styled.div`
     display: flex;
@@ -17,11 +18,8 @@ const StyledCard = styled.div`
 
     h1 {
         font-size: 16px;
-        padding: 10px 0 20px 0;
-        width: 90%;
-        margin-bottom: 0;
-        text-align: center;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
+        padding: 20px 10px 20px 0;
+        margin: 0 3px;
 
         a {
             color: ${props => props.theme.colors.link};
@@ -33,7 +31,15 @@ const StyledCard = styled.div`
         }
     }
 
-    .details {
+    .cardHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 90%;
+        border-bottom: 1px solid ${props => props.theme.colors.primary};
+    }
+
+    .cardDetails {
         display: flex;
         flex-direction: column;
         width: 90%;
@@ -90,15 +96,18 @@ const Card: React.FC<Props> = ({ game }) => {
     return (
         <StyledCard>
             <img src={game.background_image} alt={game.name} />
-            <h1>
-                <Link to={`game/${game.id}`}>{game.name}</Link>
-            </h1>
-            <div className="details">
-                <div className="details__item">
+            <div className="cardHeader">
+                <h1>
+                    <Link to={`game/${game.id}`}>{game.name}</Link>
+                </h1>
+                <Like gameId={game.id} />
+            </div>
+            <div className="cardDetails">
+                <div className="cardDetails__item">
                     <div>Release Date:</div>
                     <div>{date}</div>
                 </div>
-                <div className="details__item">
+                <div className="cardDetails__item">
                     <div>Rating:</div>
                     <StyledRate defaultValue={game.rating} allowHalf={true} disabled={true} />
                 </div>

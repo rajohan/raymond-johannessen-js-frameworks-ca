@@ -14,6 +14,7 @@ export const defaultTheme: DefaultTheme = {
         success: "#21ba45",
         text: "#ffffff",
         link: "#ffffff",
-        linkHover: "#555555"
+        linkHover: "#555555",
+        like: "#ff4437"
     }
 };

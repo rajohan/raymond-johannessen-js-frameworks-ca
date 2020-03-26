@@ -4,7 +4,7 @@ import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 
 import { StoreContext } from "../store";
 import { defaultTheme } from "../themes/defaultTheme";
-import { getGames } from "../store/actions";
+import { getGames, loadFavorites } from "../store/actions";
 import Header from "./Shared/Header";
 import Footer from "./Shared/Footer";
 import Home from "./Home";
@@ -61,6 +61,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         dispatch(getGames());
+        dispatch(loadFavorites());
     }, [dispatch]);
 
     return (
