@@ -18,6 +18,7 @@ const StyledNavigation = styled.nav`
         &:hover,
         &.active {
             background-color: ${props => props.theme.colors.primary};
+            transition: background-color 0.3s;
         }
     }
 

@@ -52,14 +52,14 @@ export const searchGames = (query: string): ((dispatch: Function) => Promise<any
     };
 };
 
-export const loadFavorites = (): ((dispatch: Function) => Promise<any>) => {
-    return async (dispatch: Function) => {
-        const favorites = await localStorage.getItem(FAVORITES_LOCAL_STORAGE);
+export const loadFavorites = (): { type: ActionTypes; payload?: any } => {
+    const favorites = localStorage.getItem(FAVORITES_LOCAL_STORAGE);
 
-        if (favorites) {
-            dispatch({ type: ActionTypes.LOAD_FAVORITES, payload: JSON.parse(favorites) });
-        }
-    };
+    if (favorites) {
+        return { type: ActionTypes.LOAD_FAVORITES, payload: JSON.parse(favorites) };
+    } else {
+        return { type: ActionTypes.LOAD_FAVORITES, payload: [] };
+    }
 };
 
 export const updateFavorites = (gameId: number): ((dispatch: Function, getState: () => AppState) => Promise<any>) => {
@@ -67,19 +67,23 @@ export const updateFavorites = (gameId: number): ((dispatch: Function, getState:
         const state = getState();
 
         if (state.favorites.filter(game => gameId === game.id).length > 0) {
-            await localStorage.setItem(
+            localStorage.setItem(
                 FAVORITES_LOCAL_STORAGE,
                 JSON.stringify(state.favorites.filter(game => game.id !== gameId))
             );
 
             dispatch({ type: ActionTypes.DISLIKE_GAME, payload: gameId });
         } else {
-            await localStorage.setItem(
-                FAVORITES_LOCAL_STORAGE,
-                JSON.stringify([...state.favorites, state.games?.filter(game => game.id === gameId)[0]])
-            );
+            let game = state.games?.filter(game => game.id === gameId)[0];
 
-            dispatch({ type: ActionTypes.LIKE_GAME, payload: state.games?.filter(game => game.id === gameId)[0] });
+            if (!game) {
+                const { data } = await axios.get(`${GAME_API_URL}/${gameId}`);
+                game = data;
+            }
+
+            localStorage.setItem(FAVORITES_LOCAL_STORAGE, JSON.stringify([...state.favorites, game]));
+
+            dispatch({ type: ActionTypes.LIKE_GAME, payload: game });
         }
     };
 };

@@ -7,6 +7,7 @@ import { StoreContext } from "../../store";
 import Tags from "../Shared/Tags";
 import Button from "../Shared/Form/Button";
 import Loading from "../Shared/Loading";
+import Like from "../Shared/Like";
 
 const StyledDetails = styled.div`
     display: flex;
@@ -17,13 +18,6 @@ const StyledDetails = styled.div`
     background-color: ${props => props.theme.colors.tertiary};
     padding-bottom: 10px;
     border-radius: 3px;
-
-    h1 {
-        width: 95%;
-        text-align: center;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
-        padding-bottom: 10px;
-    }
 
     h2 {
         width: 95%;
@@ -41,7 +35,19 @@ const StyledDetails = styled.div`
         margin-bottom: 10px;
     }
 
-    .tagRow {
+    .detailsHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 95%;
+        border-bottom: 1px solid ${props => props.theme.colors.primary};
+
+        h1 {
+            text-align: center;
+        }
+    }
+
+    .detailsTagRow {
         display: flex;
         width: 95%;
         align-items: center;
@@ -50,7 +56,7 @@ const StyledDetails = styled.div`
         margin-bottom: 10px;
     }
 
-    .description {
+    .detailsDescription {
         display: flex;
         padding: 0 10px 20px 10px;
         width: 95%;
@@ -75,23 +81,26 @@ const Details: React.FC = () => {
     }
 
     if (!state.game || !state.game.name || (gameId.id && isNaN(parseInt(gameId.id)))) {
-        return <React.Fragment>Game could not be found</React.Fragment>;
+        return <React.Fragment>Sorry the game your are requesting could not be found.</React.Fragment>;
     }
 
     return (
         <StyledDetails>
             <img src={state.game.background_image} alt={state.game.name} />
-            <h1>{state.game.name}</h1>
+            <div className="detailsHeader">
+                <h1>{state.game.name}</h1>
+                <Like gameId={state.game.id} />
+            </div>
             <h2>Genres</h2>
-            <div className="tagRow">
+            <div className="detailsTagRow">
                 <Tags tags={state.game?.genres} tagKeys={["name"]} />
             </div>
             <h2>Platforms</h2>
-            <div className="tagRow">
+            <div className="detailsTagRow">
                 <Tags tags={state.game?.platforms} tagKeys={["platform", "name"]} />
             </div>
             <h2>Description</h2>
-            <div className="description">{state.game.description_raw}</div>
+            <div className="detailsDescription">{state.game.description_raw}</div>
             <Button type="a" link={state.game.website} target="_blank" rel="noopener noreferrer">
                 Visit The Games Website
             </Button>
