@@ -86,7 +86,7 @@ const Details: React.FC = () => {
             description = description.replace(/&amp;amp;|&amp;/g, "&");
             description = description.replace(/<ul>|<ol>(.*?)<\/ol>|<\/ul>/g, "$1");
             description = description.replace(/<li>(.*?)<\/li>/g, "\n • $1");
-            description = description.replace(/<strong>(.*?)<\/strong>/g, "");
+            description = description.replace(/<strong>(.*?)<\/strong>/g, "$1");
             description = description.split(/(?:<p>)?(.*?)(?:<\/p>|<br.?\/?>|[\r\n])/g).filter(line => line.length > 0);
 
             return description.map((string, index) => <p key={`paragraph-${index}`}>{string}</p>);
