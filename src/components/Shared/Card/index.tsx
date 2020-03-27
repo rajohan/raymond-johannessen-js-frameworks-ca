@@ -63,6 +63,11 @@ const StyledCard = styled.div`
         height: 200px;
         object-fit: cover;
         object-position: top;
+
+        &:hover {
+            opacity: 0.7;
+            transition: opacity 0.5s;
+        }
     }
 `;
 
