@@ -83,8 +83,7 @@ const Details: React.FC = () => {
 
             description = description.replace(/&#39;/g, "'");
             description = description.replace(/&amp;quot;|&amp;#39;/g, '"');
-            description = description.replace(/&amp;amp;/g, "&");
-            description = description.replace(/&amp;/g, "&");
+            description = description.replace(/&amp;amp;|&amp;/g, "&");
             description = description.replace(/<ul>|<ol>(.*?)<\/ol>|<\/ul>/g, "$1");
             description = description.replace(/<li>(.*?)<\/li>/g, "\n • $1");
             description = description.replace(/<strong>(.*?)<\/strong>/g, "");
