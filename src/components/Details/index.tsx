@@ -77,22 +77,6 @@ const Details: React.FC = () => {
         }
     }, [gameId.id, dispatch]);
 
-    const renderDescription = () => {
-        if (state.game?.description) {
-            let description: string | string[] = state.game.description;
-
-            description = description.replace(/&#39;/g, "'");
-            description = description.replace(/&amp;quot;|&amp;#39;/g, '"');
-            description = description.replace(/&amp;amp;|&amp;/g, "&");
-            description = description.replace(/<ul>|<ol>(.*?)<\/ol>|<\/ul>/g, "$1");
-            description = description.replace(/<li>(.*?)<\/li>/g, "\n • $1");
-            description = description.replace(/<strong>(.*?)<\/strong>/g, "$1");
-            description = description.split(/(?:<p>)?(.*?)(?:<\/p>|<br.?\/?>|[\r\n])/g).filter(line => line.length > 0);
-
-            return description.map((string, index) => <p key={`paragraph-${index}`}>{string}</p>);
-        }
-    };
-
     if (state.loading) {
         return <Loading />;
     }
@@ -116,8 +100,8 @@ const Details: React.FC = () => {
             <div className="detailsTagRow">
                 <Tags tags={state.game?.platforms} tagKeys={["platform", "name"]} />
             </div>
-            <h2>Description</h2>
-            <div className="detailsDescription">{renderDescription()}</div>
+            <h2>Description</h2 >
+            <div className="detailsDescription" dangerouslySetInnerHTML={{__html: state.game?.description}} />
             <Button type="a" link={state.game.website} target="_blank" rel="noopener noreferrer">
                 Visit The Games Website
             </Button>
