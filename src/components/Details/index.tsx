@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import { getGame } from "../../store/actions";
 import { StoreContext } from "../../store";
+import Breadcrumb from "../Shared/Breadcrumb";
 import Tags from "../Shared/Tags";
 import Button from "../Shared/Form/Button";
 import Loading from "../Shared/Loading";
@@ -67,6 +68,22 @@ const StyledDetails = styled.div`
     }
 `;
 
+const DetailsError = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+        color: ${props => props.theme.colors.text};
+        text-decoration: none;
+        font-weight: bold;
+
+        &:hover {
+            color: ${props => props.theme.colors.secondary};
+        }
+    }
+`;
+
 const Details: React.FC = () => {
     const { state, dispatch } = useContext(StoreContext);
     const gameId: { id?: string } = useParams();
@@ -82,30 +99,38 @@ const Details: React.FC = () => {
     }
 
     if (!state.game || !state.game.name || (gameId.id && isNaN(parseInt(gameId.id)))) {
-        return <React.Fragment>Sorry the game your are requesting could not be found.</React.Fragment>;
+        return (
+            <DetailsError>
+                <p>Sorry the game your are requesting could not be found.</p>
+                <Link to="/">Go back to the home page</Link>
+            </DetailsError>
+        );
     }
 
     return (
-        <StyledDetails>
-            <img src={state.game.background_image} alt={state.game.name} />
-            <div className="detailsHeader">
-                <h1>{state.game.name}</h1>
-                <Like gameId={state.game.id} />
-            </div>
-            <h2>Genres</h2>
-            <div className="detailsTagRow">
-                <Tags tags={state.game?.genres} tagKeys={["name"]} />
-            </div>
-            <h2>Platforms</h2>
-            <div className="detailsTagRow">
-                <Tags tags={state.game?.platforms} tagKeys={["platform", "name"]} />
-            </div>
-            <h2>Description</h2 >
-            <div className="detailsDescription" dangerouslySetInnerHTML={{__html: state.game?.description}} />
-            <Button type="a" link={state.game.website} target="_blank" rel="noopener noreferrer">
-                Visit The Games Website
-            </Button>
-        </StyledDetails>
+        <React.Fragment>
+            <Breadcrumb paths={[{ to: "/", text: "Home" }]} width={800} append={state.game.name} />
+            <StyledDetails>
+                <img src={state.game.background_image} alt={state.game.name} />
+                <div className="detailsHeader">
+                    <h1>{state.game.name}</h1>
+                    <Like gameId={state.game.id} />
+                </div>
+                <h2>Genres</h2>
+                <div className="detailsTagRow">
+                    <Tags tags={state.game?.genres} tagKeys={["name"]} />
+                </div>
+                <h2>Platforms</h2>
+                <div className="detailsTagRow">
+                    <Tags tags={state.game?.platforms} tagKeys={["platform", "name"]} />
+                </div>
+                <h2>Description</h2>
+                <div className="detailsDescription" dangerouslySetInnerHTML={{ __html: state.game?.description }} />
+                <Button type="a" link={state.game.website} target="_blank" rel="noopener noreferrer">
+                    Visit The Games Website
+                </Button>
+            </StyledDetails>
+        </React.Fragment>
     );
 };
 

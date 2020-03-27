@@ -4,6 +4,7 @@ import { StoreContext } from "../../store";
 import Card from "../Shared/Card";
 import Loading from "../Shared/Loading";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const MarginTop = styled.div`
     margin-top: 10px;
@@ -18,6 +19,23 @@ const StyledFavorites = styled.div`
     justify-content: center;
 `;
 
+const StyledNoFavorites = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    a {
+        color: ${props => props.theme.colors.text};
+        text-decoration: none;
+        font-weight: bold;
+        margin-top: 20px;
+
+        &:hover {
+            color: ${props => props.theme.colors.secondary};
+        }
+    }
+`;
+
 const Favorites: React.FC = () => {
     const { state } = useContext(StoreContext);
 
@@ -29,7 +47,12 @@ const Favorites: React.FC = () => {
         <React.Fragment>
             <h1>Your Favorites</h1>
             {!state.loading && state.favorites.length < 1 ? (
-                <MarginTop>You do not have any favorites yet.</MarginTop>
+                <StyledNoFavorites>
+                    <MarginTop>You do not have any favorites yet.</MarginTop>
+                    <Link className="noFavorites" to="/">
+                        Go back to the home page
+                    </Link>
+                </StyledNoFavorites>
             ) : state.loading ? (
                 <MarginTop>
                     <Loading />
