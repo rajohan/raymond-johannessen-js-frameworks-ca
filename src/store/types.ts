@@ -18,7 +18,7 @@ export type Game = {
     released: string;
     genres: [{ name: string }];
     platforms: [{ platform: { name: string } }];
-    description_raw: string;
+    description: string;
     website: string;
 };
 

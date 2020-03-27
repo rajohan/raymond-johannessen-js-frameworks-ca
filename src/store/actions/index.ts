@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { ActionTypes } from "./types";
-import { FAVORITES_LOCAL_STORAGE, GAME_API_URL, PAGE_SIZE, SEARCH_ORDER } from "../../constants";
+import { FAVORITES_LOCAL_STORAGE, GAME_API_URL, PAGE_SIZE } from "../../constants";
 import { AppState } from "../types";
 
 export const setLoading = (isLoading: boolean): { type: ActionTypes; payload?: any } => {
@@ -45,7 +45,7 @@ export const searchGames = (query: string): ((dispatch: Function) => Promise<any
     return async (dispatch: Function) => {
         dispatch(setLoading(true));
 
-        const { data } = await axios.get(`${GAME_API_URL}?search=${query}&${PAGE_SIZE}&${SEARCH_ORDER}`);
+        const { data } = await axios.get(`${GAME_API_URL}?search=${query}&${PAGE_SIZE}`);
         dispatch({ type: ActionTypes.SEARCH_GAMES, payload: data.results });
 
         dispatch(setLoading(false));

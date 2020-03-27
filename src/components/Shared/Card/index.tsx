@@ -95,7 +95,9 @@ const Card: React.FC<Props> = ({ game }) => {
 
     return (
         <StyledCard>
-            <img src={game.background_image} alt={game.name} />
+            <Link to={`game/${game.id}`}>
+                <img src={game.background_image} alt={game.name} />
+            </Link>
             <div className="cardHeader">
                 <h1>
                     <Link to={`game/${game.id}`}>{game.name}</Link>
