@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { StoreContext } from "../../store";
 import Card from "../Shared/Card";
 import Loading from "../Shared/Loading";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 const MarginTop = styled.div`
     margin-top: 10px;
@@ -25,21 +25,21 @@ const StyledNoFavorites = styled.div`
     align-items: center;
 
     a {
-        color: ${props => props.theme.colors.text};
+        color: ${(props): string => props.theme.colors.text};
         text-decoration: none;
         font-weight: bold;
         margin-top: 20px;
 
         &:hover {
-            color: ${props => props.theme.colors.secondary};
+            color: ${(props): string => props.theme.colors.secondary};
         }
     }
 `;
 
-const Favorites: React.FC = () => {
+const Favorites: React.FC = (): React.ReactElement => {
     const { state } = useContext(StoreContext);
 
-    const renderGames = () => {
+    const renderGames = (): React.ReactNode => {
         return state.favorites.map(game => <Card key={`gameId-${game.id}`} game={game} />);
     };
 

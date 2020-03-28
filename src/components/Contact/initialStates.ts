@@ -5,7 +5,9 @@ export const initialStateValues = {
     message: ""
 };
 
-export const initialStateTouched = (value: boolean) => ({
+export const initialStateTouched = (
+    value: boolean
+): { firstName: boolean; lastName: boolean; email: boolean; message: boolean } => ({
     firstName: value,
     lastName: value,
     email: value,

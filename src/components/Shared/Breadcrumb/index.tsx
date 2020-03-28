@@ -1,11 +1,11 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const StyledBreadcrumb = styled.div<{ width: number }>`
     font-size: 12px;
     margin: 0 0 20px 10px;
-    max-width: ${props => props.width}px;
+    max-width: ${(props): number => props.width}px;
     width: 100%;
     text-transform: uppercase;
 
@@ -14,11 +14,11 @@ const StyledBreadcrumb = styled.div<{ width: number }>`
     }
 
     a {
-        color: ${props => props.theme.colors.text};
+        color: ${(props): string => props.theme.colors.text};
         text-decoration: none;
 
         &:hover {
-            color: ${props => props.theme.colors.secondary};
+            color: ${(props): string => props.theme.colors.secondary};
         }
     }
 `;
@@ -29,8 +29,8 @@ type Props = {
     paths: { to: string; text: string }[];
 };
 
-const Breadcrumb: React.FC<Props> = ({ paths, append, width }) => {
-    const renderBreadcrumb = () => {
+const Breadcrumb: React.FC<Props> = ({ paths, append, width }: PropsWithChildren<Props>): React.ReactElement => {
+    const renderBreadcrumb = (): React.ReactNode => {
         return paths.map((path, index) => {
             return index === 0 ? (
                 <Link to={path.to} key={`path-${index}`}>

@@ -7,8 +7,8 @@ const StyledFooter = styled.footer`
     padding: 15px;
     flex-direction: column;
     align-items: center;
-    background-color: ${props => props.theme.colors.secondary};
-    border-top: 3px solid ${props => props.theme.colors.tertiary};
+    background-color: ${(props): string => props.theme.colors.secondary};
+    border-top: 3px solid ${(props): string => props.theme.colors.tertiary};
 
     small {
         padding: 5px;
@@ -19,16 +19,16 @@ const StyledFooter = styled.footer`
 
     a {
         margin: 0 5px;
-        color: ${props => props.theme.colors.link};
+        color: ${(props): string => props.theme.colors.link};
         text-decoration: none;
 
         &:hover {
-            color: ${props => props.theme.colors.linkHover};
+            color: ${(props): string => props.theme.colors.linkHover};
         }
     }
 `;
 
-const Footer: React.FC = () => {
+const Footer: React.FC = (): React.ReactElement => {
     return (
         <StyledFooter>
             <small>

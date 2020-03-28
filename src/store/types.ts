@@ -29,3 +29,5 @@ export type AppState = {
     loading: boolean;
     state?: {};
 };
+
+export type Dispatch = (action: Function | Action) => void;

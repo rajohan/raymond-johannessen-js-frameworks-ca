@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import Input from "../Shared/Form/Input";
 import styled from "styled-components";
 import { StoreContext } from "../../store";
@@ -12,7 +13,7 @@ const StyledSearch = styled.div`
     margin: 20px 0;
 `;
 
-const Search: React.FC = () => {
+const Search: React.FC = (): React.ReactElement => {
     const { dispatch } = useContext(StoreContext);
     const [searchQuery, setSearchQuery] = useState("");
     const [searchTouched, setSearchTouched] = useState(false);
@@ -27,19 +28,21 @@ const Search: React.FC = () => {
             }
         }, 800);
 
-        return () => {
+        return (): void => {
             clearTimeout(timer);
         };
     }, [dispatch, searchTouched, searchQuery]);
 
     // Reset games state when leaving component if a search has been performed
     useEffect(() => {
-        return () => {
+        return (): void => {
             searchTouched && dispatch(getGames());
         };
     }, [searchTouched, dispatch]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
+    const handleChange = (
+        event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>
+    ): void => {
         setSearchQuery(event.target.value);
         setSearchTouched(true);
     };

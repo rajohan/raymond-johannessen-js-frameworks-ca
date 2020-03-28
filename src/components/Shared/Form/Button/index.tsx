@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -12,8 +12,8 @@ type Props = {
 
 const StyledLink = styled.a`
     display: inline-block;
-    background-color: ${props => props.theme.colors.secondary};
-    color: ${props => props.theme.colors.text};
+    background-color: ${(props): string => props.theme.colors.secondary};
+    color: ${(props): string => props.theme.colors.text};
     text-decoration: none;
     border: none;
     padding: 12px 30px;
@@ -26,7 +26,7 @@ const StyledLink = styled.a`
     font-weight: 700;
 
     &:hover {
-        background-color: ${props => props.theme.colors.secondaryLight};
+        background-color: ${(props): string => props.theme.colors.secondaryLight};
         transition: background-color 0.3s;
     }
 
@@ -37,7 +37,7 @@ const StyledLink = styled.a`
     }
 `;
 
-const Button: React.FC<Props> = props => {
+const Button: React.FC<Props> = (props: PropsWithChildren<Props>): React.ReactElement => {
     const { link = "", type = "link", children, target, rel, onClick } = props;
 
     if (type === "a") {

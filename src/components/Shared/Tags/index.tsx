@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 import Tag from "./Tag";
@@ -16,13 +16,13 @@ type Props = {
     tagKeys: string[];
 };
 
-const Tags: React.FC<Props> = ({ tags, tagKeys }) => {
-    const renderTags = () => {
+const Tags: React.FC<Props> = ({ tags, tagKeys }: PropsWithChildren<Props>): React.ReactElement => {
+    const renderTags = (): React.ReactNode => {
         return tags.map(tag => {
-            let key: string = "";
+            let key = "";
 
             // Loop through tagKeys in the tags array to extract the tag
-            for (let i: number = 0; i < tagKeys.length; i++) {
+            for (let i = 0; i < tagKeys.length; i++) {
                 key = i === 0 ? tag[tagKeys[i] as any] : key[tagKeys[i] as any];
             }
 

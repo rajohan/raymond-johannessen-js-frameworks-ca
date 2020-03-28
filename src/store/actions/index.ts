@@ -2,17 +2,17 @@ import axios from "axios";
 
 import { ActionTypes } from "./types";
 import { FAVORITES_LOCAL_STORAGE, GAME_API_URL, PAGE_SIZE } from "../../constants";
-import { AppState } from "../types";
+import { Action, AppState } from "../types";
 
-export const setLoading = (isLoading: boolean): { type: ActionTypes; payload?: any } => {
+export const setLoading = (isLoading: boolean): Action => {
     return {
         type: ActionTypes.SET_LOADING,
         payload: isLoading
     };
 };
 
-export const getGame = (gameId: number): ((dispatch: Function) => Promise<any>) => {
-    return async (dispatch: Function) => {
+export const getGame = (gameId: number): ((dispatch: Function) => Promise<void>) => {
+    return async (dispatch: Function): Promise<void> => {
         dispatch(setLoading(true));
 
         try {
@@ -30,8 +30,8 @@ export const getGame = (gameId: number): ((dispatch: Function) => Promise<any>) 
     };
 };
 
-export const getGames = (): ((dispatch: Function) => Promise<any>) => {
-    return async (dispatch: Function) => {
+export const getGames = (): ((dispatch: Function) => Promise<void>) => {
+    return async (dispatch: Function): Promise<void> => {
         dispatch(setLoading(true));
 
         const { data } = await axios.get(`${GAME_API_URL}?${PAGE_SIZE}`);
@@ -41,8 +41,8 @@ export const getGames = (): ((dispatch: Function) => Promise<any>) => {
     };
 };
 
-export const searchGames = (query: string): ((dispatch: Function) => Promise<any>) => {
-    return async (dispatch: Function) => {
+export const searchGames = (query: string): ((dispatch: Function) => Promise<void>) => {
+    return async (dispatch: Function): Promise<void> => {
         dispatch(setLoading(true));
 
         const { data } = await axios.get(`${GAME_API_URL}?search=${query}&${PAGE_SIZE}`);
@@ -52,7 +52,7 @@ export const searchGames = (query: string): ((dispatch: Function) => Promise<any
     };
 };
 
-export const loadFavorites = (): { type: ActionTypes; payload?: any } => {
+export const loadFavorites = (): Action => {
     const favorites = localStorage.getItem(FAVORITES_LOCAL_STORAGE);
 
     if (favorites) {
@@ -62,8 +62,8 @@ export const loadFavorites = (): { type: ActionTypes; payload?: any } => {
     }
 };
 
-export const updateFavorites = (gameId: number): ((dispatch: Function, getState: () => AppState) => Promise<any>) => {
-    return async (dispatch: Function, getState: () => AppState) => {
+export const updateFavorites = (gameId: number): ((dispatch: Function, getState: () => AppState) => Promise<void>) => {
+    return async (dispatch: Function, getState: () => AppState): Promise<void> => {
         const state = getState();
 
         if (state.favorites.filter(game => gameId === game.id).length > 0) {

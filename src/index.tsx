@@ -5,7 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { StoreProvider } from "./store";
 import App from "./components/App";
 
-const Root: React.FC = () => {
+const Root: React.FC = (): React.ReactElement => {
     return (
         <StoreProvider>
             <BrowserRouter>

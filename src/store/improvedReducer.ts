@@ -1,14 +1,13 @@
 import { Reducer, useCallback, useReducer, useRef } from "react";
 
-import { ActionTypes } from "./actions/types";
-import { AppState } from "./types";
+import { Action, AppState, Dispatch } from "./types";
 
-export const useImprovedReducer = (reducer: Reducer<AppState, any>, initialState: AppState) => {
+const useImprovedReducer = (reducer: Reducer<AppState, Action>, initialState: AppState): [AppState, Dispatch] => {
     const [state, dispatch] = useReducer(reducer, initialState);
 
     const prevState = useRef({});
 
-    const improvedDispatch: any = useCallback((action: { type: ActionTypes; payload?: any } | Function) => {
+    const improvedDispatch: Dispatch = useCallback((action: Action | Function) => {
         if (typeof action === "function") {
             return action(improvedDispatch, () => prevState.current);
         }
@@ -20,3 +19,5 @@ export const useImprovedReducer = (reducer: Reducer<AppState, any>, initialState
 
     return [state, improvedDispatch];
 };
+
+export { useImprovedReducer };

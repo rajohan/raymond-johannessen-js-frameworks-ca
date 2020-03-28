@@ -15,13 +15,11 @@ const StyledHome = styled.div`
     justify-content: center;
 `;
 
-const Home: React.FC = () => {
+const Home: React.FC = (): React.ReactElement => {
     const { state } = useContext(StoreContext);
 
-    const renderGames = () => {
-        if (state.games) {
-            return state.games.map(game => <Card key={`gameId-${game.id}`} game={game} />);
-        }
+    const renderGames = (): React.ReactNode => {
+        return state.games?.map(game => <Card key={`gameId-${game.id}`} game={game} />);
     };
 
     return (

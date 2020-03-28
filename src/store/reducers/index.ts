@@ -1,7 +1,7 @@
 import { ActionTypes } from "../actions/types";
-import { AppState } from "../types";
+import { Action, AppState } from "../types";
 
-export const reducer = (state: AppState, action: { type: ActionTypes; payload?: any }): AppState => {
+export const reducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
         case ActionTypes.SET_LOADING:
             return { ...state, loading: action.payload };

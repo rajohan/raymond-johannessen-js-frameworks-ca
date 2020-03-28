@@ -1,18 +1,18 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
+import { Link } from "react-router-dom";
 import Rate from "rc-rate";
 import styled from "styled-components";
-import "../../../assets/rc-rate/rc-rate.css";
 
+import "../../../assets/rc-rate/rc-rate.css";
 import { Game } from "../../../store/types";
 import Button from "../Form/Button";
-import { Link } from "react-router-dom";
 import Like from "../Like";
 
 const StyledCard = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: ${props => props.theme.colors.tertiary};
+    background-color: ${(props): string => props.theme.colors.tertiary};
     padding-bottom: 10px;
     border-radius: 3px;
 
@@ -22,11 +22,11 @@ const StyledCard = styled.div`
         margin: 0 3px;
 
         a {
-            color: ${props => props.theme.colors.link};
+            color: ${(props): string => props.theme.colors.link};
             text-decoration: none;
 
             &:hover {
-                color: ${props => props.theme.colors.secondaryLight};
+                color: ${(props): string => props.theme.colors.secondaryLight};
             }
         }
     }
@@ -36,7 +36,7 @@ const StyledCard = styled.div`
         justify-content: space-between;
         align-items: center;
         width: 90%;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
+        border-bottom: 1px solid ${(props): string => props.theme.colors.primary};
     }
 
     .cardDetails {
@@ -53,7 +53,7 @@ const StyledCard = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid ${props => props.theme.colors.primary};
+            border-bottom: 1px solid ${(props): string => props.theme.colors.primary};
             padding: 10px 2px;
         }
     }
@@ -91,7 +91,7 @@ type Props = {
     game: Game;
 };
 
-const Card: React.FC<Props> = ({ game }) => {
+const Card: React.FC<Props> = ({ game }: PropsWithChildren<Props>): React.ReactElement => {
     const date = new Date(game.released).toLocaleDateString("en-GB", {
         month: "long",
         year: "numeric",

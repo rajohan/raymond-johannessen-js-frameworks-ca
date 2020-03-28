@@ -10,7 +10,7 @@ import { initialStateTouched, initialStateValues } from "./initialStates";
 import { Inputs, FieldError } from "./types";
 import { schema } from "./validationSchema";
 
-const Contact: React.FC = () => {
+const Contact: React.FC = (): React.ReactElement => {
     const [values, setValues] = useState(initialStateValues);
     const [touched, setTouched] = useState(initialStateTouched(false));
     const [messageSent, setMessageSent] = useState(false);
@@ -29,21 +29,23 @@ const Contact: React.FC = () => {
             });
     }, [values]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (
+        event: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>
+    ): void => {
         setValues({
             ...values,
             [event.target.name]: event.target.value
         });
     };
 
-    const handleBlur = (event: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>) => {
+    const handleBlur = (event: React.ChangeEvent<HTMLTextAreaElement> | React.ChangeEvent<HTMLInputElement>): void => {
         setTouched({
             ...touched,
             [event.target.name]: true
         });
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
         if (schema.isValidSync(values)) {
@@ -57,7 +59,7 @@ const Contact: React.FC = () => {
         }
     };
 
-    const renderError = (field: string) => {
+    const renderError = (field: string): boolean | React.ReactNode => {
         if (currentErrors) {
             const error = currentErrors.filter(error => error.name === field);
             return error.length > 0 && <InputError>{error[0].message}</InputError>;
@@ -66,7 +68,7 @@ const Contact: React.FC = () => {
         return false;
     };
 
-    const renderInputs = ({ name, placeholder, label, type }: Inputs) => {
+    const renderInputs = ({ name, placeholder, label, type }: Inputs): React.ReactNode => {
         return (
             <React.Fragment>
                 <Input

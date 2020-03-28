@@ -15,18 +15,18 @@ import Favorites from "./Favorites";
 const GlobalStyle = createGlobalStyle`
     * {
         box-sizing: border-box;
-        font-family: ${props => props.theme.font.main};
+        font-family: ${(props): string => props.theme.font.main};
     }
     
      body {
-        background-color: ${props => props.theme.colors.primary};
+        background-color: ${(props): string => props.theme.colors.primary};
         padding: 0;
         margin: 0;
-        font-size: ${props => props.theme.font.size};
+        font-size: ${(props): string => props.theme.font.size};
     }
     
     #root {
-        color: ${props => props.theme.colors.text};
+        color: ${(props): string => props.theme.colors.text};
         max-width: 100vw;
         min-height: 100vh;
         display: flex;
@@ -56,7 +56,7 @@ const Container = styled.main`
     width: 100%;
 `;
 
-const App: React.FC = () => {
+const App: React.FC = (): React.ReactElement => {
     const { dispatch } = useContext(StoreContext);
 
     useEffect(() => {

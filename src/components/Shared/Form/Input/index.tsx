@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 import Label from "../Label";
@@ -9,21 +9,21 @@ const StyledInput = styled.div`
 
     input,
     textarea {
-        background-color: ${props => props.theme.colors.tertiary};
+        background-color: ${(props): string => props.theme.colors.tertiary};
         border: none;
-        color: ${props => props.theme.colors.text};
+        color: ${(props): string => props.theme.colors.text};
         padding: 9px 10px 7px 10px;
         border-radius: 2px;
         outline: none;
-        border-bottom: 3px solid ${props => props.theme.colors.tertiary};
+        border-bottom: 3px solid ${(props): string => props.theme.colors.tertiary};
         width: 100%;
 
         &:focus {
-            border-color: ${props => props.theme.colors.secondary};
+            border-color: ${(props): string => props.theme.colors.secondary};
         }
 
         &::placeholder {
-            color: ${props => props.theme.colors.primary};
+            color: ${(props): string => props.theme.colors.primary};
             opacity: 1;
         }
     }
@@ -46,7 +46,7 @@ type Props = {
     value?: string;
 };
 
-const Input: React.FC<Props> = props => {
+const Input: React.FC<Props> = (props: PropsWithChildren<Props>): React.ReactElement => {
     const { id = "", name, type = "text", placeholder, label, value, onChange, onBlur } = props;
 
     const input =

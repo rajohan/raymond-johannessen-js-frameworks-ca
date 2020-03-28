@@ -16,7 +16,7 @@ const StyledDetails = styled.div`
     max-width: 800px;
     justify-content: center;
     align-items: center;
-    background-color: ${props => props.theme.colors.tertiary};
+    background-color: ${(props): string => props.theme.colors.tertiary};
     padding-bottom: 10px;
     border-radius: 3px;
 
@@ -41,7 +41,7 @@ const StyledDetails = styled.div`
         justify-content: space-between;
         align-items: center;
         width: 95%;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
+        border-bottom: 1px solid ${(props): string => props.theme.colors.primary};
 
         h1 {
             text-align: center;
@@ -53,7 +53,7 @@ const StyledDetails = styled.div`
         width: 95%;
         align-items: center;
         padding-bottom: 10px;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
+        border-bottom: 1px solid ${(props): string => props.theme.colors.primary};
         margin-bottom: 10px;
     }
 
@@ -64,7 +64,7 @@ const StyledDetails = styled.div`
         width: 95%;
         margin-top: 10px;
         margin-bottom: 10px;
-        border-bottom: 1px solid ${props => props.theme.colors.primary};
+        border-bottom: 1px solid ${(props): string => props.theme.colors.primary};
     }
 `;
 
@@ -74,17 +74,17 @@ const DetailsError = styled.div`
     align-items: center;
 
     a {
-        color: ${props => props.theme.colors.text};
+        color: ${(props): string => props.theme.colors.text};
         text-decoration: none;
         font-weight: bold;
 
         &:hover {
-            color: ${props => props.theme.colors.secondary};
+            color: ${(props): string => props.theme.colors.secondary};
         }
     }
 `;
 
-const Details: React.FC = () => {
+const Details: React.FC = (): React.ReactElement => {
     const { state, dispatch } = useContext(StoreContext);
     const gameId: { id?: string } = useParams();
 
